@@ -23,12 +23,12 @@ public class CartController {
 	@GetMapping
 	public String showUserProducts(Principal principal, Model model) {
 		model.addAttribute("products", cartService.getUserProducts(Integer.parseInt(principal.getName())));
-		return "productList";
+		return "cart";
 	}
-	
-	@PostMapping("/{productId}")
-	public String addProductToCart(@PathVariable int productId, Model model) {
-		model.addAttribute("products", cartService.addProductToCart(productId));
+
+	@GetMapping("delete/{productId}")
+	public String deleteProductFromCart(@PathVariable int productId, Model model) {
+		cartService.deleteProductFromCart(productId);
 		
 		return "cart";
 	}

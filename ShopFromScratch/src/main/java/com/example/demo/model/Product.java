@@ -1,29 +1,27 @@
 package com.example.demo.model;
 
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 
-@Entity
+@MappedSuperclass
 public class Product {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-	private String category;
-	
+		
 	private String name;
 	
 	private double price;
 	
 	private int amount;
 
-	public Product(String name, double price, int amount, String category) {
+	public Product(String name, double price, int amount) {
 		this.name = name;
 		this.price = price;
 		this.amount = amount;
-		this.category = category;
 	}
 	
 	public Product() {
@@ -60,15 +58,4 @@ public class Product {
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
-
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-	
-	
-	
 }

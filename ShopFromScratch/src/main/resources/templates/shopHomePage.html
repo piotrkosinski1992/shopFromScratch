@@ -8,7 +8,9 @@
 <body>
 	<div class="container">
 		<h1>HomePage</h1>
-		<!-- 		TODO: Conditional Options Visibility - when admin logger, show more ! -->
+		<ul>
+			<li><a href="shop/products/">All products</a></li>
+		</ul>
 		<ul>
 			<li><a href="shop/products/book">Books</a></li>
 		</ul>
@@ -16,7 +18,7 @@
 			<li><a href="shop/products/car">Cars</a></li>
 		</ul>
 		<ul>
-			<li><a href="shop/cart">see your cart</a></li>
+			<li><a href="cart">see your cart</a></li>
 		</ul>
 		<form th:action="@{/logout}" method="post">
 			<input type="submit" value="Sign Out" />
