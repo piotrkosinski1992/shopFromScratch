@@ -11,16 +11,19 @@ public class Product {
 	@GeneratedValue
 	private int id;
 	
+	private String category;
+	
 	private String name;
 	
 	private double price;
 	
 	private int amount;
 
-	public Product(String name, double price, int amount) {
+	public Product(String name, double price, int amount, String category) {
 		this.name = name;
 		this.price = price;
 		this.amount = amount;
+		this.category = category;
 	}
 	
 	public Product() {
@@ -57,5 +60,15 @@ public class Product {
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	
+	
 	
 }

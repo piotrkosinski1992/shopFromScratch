@@ -3,8 +3,6 @@ package com.example.demo.service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +13,7 @@ import com.example.demo.model.Product;
 import com.example.demo.repository.ProductRepository;
 
 @Service
-public class ProductService {
+public class CartService {
 
 	
 	@Autowired
@@ -27,14 +25,16 @@ public class ProductService {
 	//info o produkcie zeby dostac pelna specyfikacje
 	//ogarnąc liczbę sztuk zamawianych
 	private static List<Product> cart = new ArrayList<>();
-
-	public List<Product> getProductsByCategory(String category) {
+	
+	
+	public List<Product> getUserProducts(int userId) {
 		// TODO Auto-generated method stub
-		return  products.stream().filter(product -> product.getCategory().equals(category)).collect(Collectors.toList());
+		return cart;
+	}
+	
+	public List<Product> addProductToCart(int productId) {
+		cart.add(products.get(productId-1));	
+		return cart;
 	}
 
-	public List<Product> getAllProducts() {
-		// TODO Auto-generated method stub
-		return products;
-	}
 }

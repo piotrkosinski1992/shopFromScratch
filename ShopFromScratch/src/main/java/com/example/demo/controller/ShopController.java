@@ -23,19 +23,7 @@ public class ShopController {
 	public String shopHomePage() {
 		return "shopHomePage";
 	}
-	
-	@GetMapping("/userId")
-	@ResponseBody
-	public String getUserId(Principal principal) {
-		return principal.getName();	
-	}
-	
-	@GetMapping("/cart")
-	public String getUserProducts(Principal principal, Model model) {
-		model.addAttribute("products", productService.getUserProducts(Integer.parseInt(principal.getName())));
-		return "productList";
-	}
-	
+		
 	@GetMapping("/products/{category}")
 	public String getProductsByCategory(@PathVariable String category, Model model) {
 		model.addAttribute("products", productService.getProductsByCategory(category));
