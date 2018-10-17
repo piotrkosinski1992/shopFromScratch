@@ -7,6 +7,8 @@ public class Book extends Product {
 
 	private int numberOfPages;
 	
+	private String category = "book";
+	
 	public Book(String name, double price, int amount, int numberOfPages) {
 		super(name, price, amount);
 		this.numberOfPages = numberOfPages;
@@ -23,6 +25,12 @@ public class Book extends Product {
 		this.numberOfPages = numberOfPages;
 	}
 
-	
-	
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
 }

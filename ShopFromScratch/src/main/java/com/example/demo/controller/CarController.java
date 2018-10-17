@@ -8,13 +8,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.service.CarService;
+import com.example.demo.service.CartService;
 
 @Controller
-@RequestMapping("/cars")
+@RequestMapping("/car")
 public class CarController {
 
 	@Autowired
 	CarService carService;
+	
+	@Autowired
+	CartService cartService;
 	
 	@GetMapping
 	public String getCars(Model model) {

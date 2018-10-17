@@ -20,12 +20,18 @@ public class CarService {
 		return carRepository.findAll();
 	}
 
-	public void addCarToCart(Car car) {
-		InMemoryCartRepository.addProductToCart(car);
-		
+	public void addCarToCart(Optional<Car> car) {
+
+		if(InMemoryCartRepository.getProductFromCartByName(car.get().getName()) != null) {
+			InMemoryCartRepository.updateProductAmount(car.get());
+		} else {
+			
+			car.get().setAmount(1);
+			InMemoryCartRepository.addProductToCart(car.get());
+		}
 	}
 
-	public Optional<Car> getById(long productId) {
+	public Optional<Car> getById(int productId) {
 		return carRepository.findById(productId);
 	}
 

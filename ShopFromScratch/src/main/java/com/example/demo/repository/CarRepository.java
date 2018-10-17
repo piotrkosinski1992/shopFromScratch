@@ -8,6 +8,6 @@ import org.springframework.data.repository.CrudRepository;
 import com.example.demo.model.Car;
 
 @Transactional
-public interface CarRepository  extends JpaRepository<Car, Long>{
+public interface CarRepository  extends JpaRepository<Car, Integer>{
 
 }

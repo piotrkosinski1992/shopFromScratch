@@ -7,7 +7,7 @@ import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public class Product {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -17,7 +17,7 @@ public class Product {
 	private double price;
 	
 	private int amount;
-
+	
 	public Product(String name, double price, int amount) {
 		this.name = name;
 		this.price = price;
@@ -58,4 +58,11 @@ public class Product {
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
+	
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + ", price=" + price + ", amount=" + amount + "]";
+	}
+	
+	
 }
