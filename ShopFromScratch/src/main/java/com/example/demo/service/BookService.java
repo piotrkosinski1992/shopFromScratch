@@ -24,8 +24,16 @@ public class BookService {
 		return bookRepository.findById(productId);
 	}
 	
-	public void addBookToCart(Optional<Book> book) {
+	public boolean addBookToCart(Optional<Book> book) {
 
+		int productAmount = book.get().getAmount();
+		if(productAmount <= 0) {
+			return false;
+		} else {
+			book.get().setAmount(productAmount - 1);
+			bookRepository.save(book.get());
+		}
+		
 		if(InMemoryCartRepository.getProductFromCartByName(book.get().getName()) != null) {
 			InMemoryCartRepository.updateProductAmount(book.get());
 		} else {
@@ -33,6 +41,7 @@ public class BookService {
 			book.get().setAmount(1);
 			InMemoryCartRepository.addProductToCart(book.get());
 		}
+		
+		return true;
 	}
-
 }

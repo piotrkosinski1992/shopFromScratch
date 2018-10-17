@@ -26,6 +26,10 @@ public class CartService {
 		InMemoryCartRepository.addProductToCart(product);
 
 	}
+	
+	public Product getProductById(int productId) {
+		return InMemoryCartRepository.getCart().stream().filter(product -> product.getId() == productId).findFirst().get();
+	}
 
 	public void deleteProductFromCart(int productId) {
 		InMemoryCartRepository.getCart().removeIf(product -> product.getId() == productId);

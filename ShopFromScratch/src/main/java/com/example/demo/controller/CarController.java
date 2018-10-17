@@ -16,23 +16,27 @@ public class CarController {
 
 	@Autowired
 	CarService carService;
-	
+
 	@Autowired
 	CartService cartService;
-	
+
 	@GetMapping
 	public String getCars(Model model) {
 		model.addAttribute("products", carService.getCars());
 		model.addAttribute("siteHeader", "car list");
-		
+
 		return "productList";
 	}
-	
+
 	@GetMapping("/{productId}")
 	public String addProductToCart(@PathVariable int productId, Model model) {
-		carService.addCarToCart(carService.getById(productId));
-		model.addAttribute("products", cartService.getUserProducts());
-		
-		return "cart";
+		if (carService.addCarToCart(carService.getById(productId))) {
+			model.addAttribute("products", cartService.getUserProducts());
+			return "cart";
+		}
+
+		model.addAttribute("errorMessage", "Amount of this product equals 0");
+		return "error";
+
 	}
 }

@@ -21,16 +21,18 @@ public class CartController {
 	
 	
 	@GetMapping
-	public String showUserProducts(Principal principal, Model model) {
-		model.addAttribute("products", cartService.getUserProducts(Integer.parseInt(principal.getName())));
+//	public String showUserProducts(Principal principal, Model model) {
+	public String showUserProducts( Model model) {
+		model.addAttribute("products", cartService.getUserProducts());
 		return "cart";
 	}
 
 	@GetMapping("delete/{productId}")
 	public String deleteProductFromCart(@PathVariable int productId, Model model) {
 		cartService.deleteProductFromCart(productId);
-		
+		model.addAttribute("products", cartService.getUserProducts());
 		return "cart";
 	}
+	
 	
 }

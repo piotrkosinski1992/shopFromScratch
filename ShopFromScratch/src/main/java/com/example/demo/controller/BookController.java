@@ -32,9 +32,13 @@ public class BookController {
 		
 		@GetMapping("/{productId}")
 		public String addProductToCart(@PathVariable int productId, Model model) {
-			bookService.addBookToCart(bookService.getById(productId));
-			model.addAttribute("products", cartService.getUserProducts());
+			if(bookService.addBookToCart(bookService.getById(productId))) {
+				model.addAttribute("products", cartService.getUserProducts());	
+				return "cart";
+			} 
 			
-			return "cart";
+			model.addAttribute("errorMessage", "Amount of this product equals 0");	
+			return "error";
+
 		}
 }

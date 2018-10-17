@@ -20,19 +20,27 @@ public class CarService {
 		return carRepository.findAll();
 	}
 
-	public void addCarToCart(Optional<Car> car) {
+	public boolean addCarToCart(Optional<Car> car) {
 
+		int productAmount = car.get().getAmount();
+		if(productAmount <= 0) {
+			return false;
+		} else {
+			car.get().setAmount(productAmount - 1);
+			carRepository.save(car.get());
+		}
+		
 		if(InMemoryCartRepository.getProductFromCartByName(car.get().getName()) != null) {
 			InMemoryCartRepository.updateProductAmount(car.get());
-		} else {
-			
+		} else {	
 			car.get().setAmount(1);
 			InMemoryCartRepository.addProductToCart(car.get());
 		}
+		
+		return true;
 	}
 
 	public Optional<Car> getById(int productId) {
 		return carRepository.findById(productId);
 	}
-
 }
